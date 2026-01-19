@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.PreparedStatement;
@@ -15,12 +17,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+@Service
 public class MemoService {
     //멤버 변수 선언
     private final MemoRepository memoRepository;
     // 생성자 주입 (DI)
-    public MemoService(JdbcTemplate jdbcTemplate) {
-        this.memoRepository = new MemoRepository(jdbcTemplate);
+    public MemoService(MemoRepository memoRepository) {
+        this.memoRepository = memoRepository;
     }
 
 
