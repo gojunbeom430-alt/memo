@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "memo")
 @Entity
-public class Memo {
+public class Memo extends TimeStamped{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,6 +21,7 @@ public class Memo {
 
     @Column(name = "contents", nullable = false, length = 500)
     private String contents;
+
 
     public Memo(MemoRequestDto memoRequestDto){
         this.username = memoRequestDto.getUsername();
