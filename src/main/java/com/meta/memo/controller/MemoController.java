@@ -3,6 +3,7 @@ package com.meta.memo.controller;
 import com.meta.memo.dto.MemoResponseDto;
 import com.meta.memo.dto.MemoRequestDto;
 import com.meta.memo.service.MemoService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,10 @@ public class MemoController {
         return memoService.getMemos();
     }
 
+    @GetMapping("/contents")
+    public List<MemoResponseDto> getMemosByKeyword(String keyword){
+        return memoService.getMemosByKeyword(keyword);
+    }
 
     @PutMapping("{id}")
     public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto memoRequestDto) {

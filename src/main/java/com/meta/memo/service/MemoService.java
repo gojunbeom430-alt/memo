@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Key;
 import java.util.List;
 
 @Service
@@ -57,6 +58,14 @@ public class MemoService {
         // 메모 내용 삭제
         memoRepository.delete(foundmemo);
         return id;
+    }
+
+    //클래스에 getMemosByKeyword 매서드 만들고 string타입의 keyword 매개변수 선언
+    public List<MemoResponseDto> getMemosByKeyword(String keyword){
+        return memoRepository.findAllByContentsContainingOrderByModifiedAtDesc(keyword)
+                .stream()
+                .map(MemoResponseDto::new)
+                .toList();
     }
 
 }
